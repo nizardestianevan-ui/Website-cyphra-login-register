@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Cyphra | Login & Register Platform</title>
+
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <meta
+            name="description"
+            content="Cyphra adalah platform modern untuk login dan registrasi dengan desain glassmorphism, animasi GSAP, dan pengalaman pengguna yang elegan."
+        />
+
+        <meta
+            name="keywords"
+            content="Cyphra, Login, Register, Authentication, GSAP, Tailwind CSS, JavaScript, Web Development"
+        />
+
+        <meta name="author" content="Rudy Evan" />
+
+        <meta name="robots" content="index, follow" />
+
+        <link rel="canonical" href="https://domainmu.com/" />
+
+        <meta
+            property="og:title"
+            content="Cyphra | Login & Register Platform"
+        />
+        <meta
+            property="og:description"
+            content="Website login dan register modern dengan animasi GSAP dan desain glassmorphism."
+        />
+        <meta
+            property="og:image"
+            content="https://domainmu.com/assets/logo.png"
+        />
+        <meta property="og:url" content="https://domainmu.com/" />
+        <meta property="og:type" content="website" />
+
+        <meta name="theme-color" content="#1E3A8A" />
+
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+        <link rel="icon" href="./assets/logo.png" type="image/png" />
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Poppins:wght@100..900&display=swap"
+            rel="stylesheet"
+        />
+
+        <style>
+            .font-poppins {
+                font-family: "Poppins", sans-serif;
+            }
+
+            .font-inter {
+                font-family: "Inter", sans-serif;
+            }
+        </style>
+    </head>
+    <body
+        class="relative min-h-screen overflow-x-hidden overflow-y-auto bg-[#1E3A8A]"
+    >
+        <header class="bg-[#4C1D95] relative min-h-screen overflow-visible">
+            <div class="flex items-center gap-3 sticky top-0 z-25 bg-[#1E3A8A]">
+                <img
+                    src="./assets/logo.png"
+                    alt="Logo"
+                    class="w-20 h-20 object-contain items-center"
+                />
+                <div>
+                    <h1
+                        class="text-3xl font-bold text-[#5FC2F6] font-inter text-justify"
+                    >
+                        Cyphra
+                    </h1>
+                    <p class="text-slate-300 text-justify font-poppins">
+                        Share. Connect. Discover.
+                    </p>
+                </div>
+            </div>
+            <div
+                class="relative min-h-screen bg-[url('./assets/Bg.jpg')] bg-cover bg-center bg-no-repeat"
+            >
+                <div
+                    id="snow"
+                    class="absolute inset-0 overflow-hidden pointer-events-none z-0"
+                ></div>
+                <div
+                    class="relative z-10 flex min-h-screen items-center justify-center"
+                    id="home"
+                >
+                    <div
+                        class="relative w-full max-w-md rounded-2xl bg-white/10 backdrop-blur-lg border border-white/20 p-3"
+                    >
+                        <h2
+                            class="font-inter text-center font-bold text-[#0C4AC2] text-glow text-4xl pb-2"
+                        >
+                            Authentication
+                        </h2>
+                        <p
+                            class="text-xs text-[#5FC2F6] font-poppins text-justify pb-8"
+                        >
+                            Access your account or create a new one
+                        </p>
+                        <button
+                            type="button"
+                            class="showlogin w-full py-3 mt-4 bg-[#5FC2F6] text-white text-lg font-bold rounded-xl shadow-lg transition duration-300 hover:bg-blue-500 hover:shadow-xl active:scale-95 focus:ring-2 focus:ring-[#5FC2F6] focus:outline-none font-inter cursor-pointer"
+                        >
+                            Log in
+                        </button>
+                        <button
+                            type="button"
+                            class="showregister w-full py-3 mt-4 border border-[#3B82F6] text-white text-lg font-bold rounded-xl shadow-lg transition duration-300 hover:bg-blue-500 hover:shadow-xl active:scale-95 focus:ring-2 focus:ring-[#5FC2F6] focus:outline-none font-inter cursor-pointer"
+                        >
+                            Register
+                        </button>
+                    </div>
+                </div>
+                <div
+                    class="relative z-10 flex min-h-screen items-center justify-center hidden"
+                    id="register"
+                >
+                    <div
+                        class="relative w-full max-w-md rounded-2xl bg-white/10 backdrop-blur-lg border border-white/20 p-3"
+                    >
+                        <form class="space-y-3" id="registerForm">
+                            <h2
+                                class="font-inter text-center font-bold text-[#0C4AC2] text-glow text-3xl"
+                            >
+                                Create Your Account
+                            </h2>
+                            <div class="space-y-1">
+                                <label
+                                    for="nama"
+                                    class="text-justify font-poppins text-slate-200"
+                                    >Username:
+                                </label>
+                                <input
+                                    type="text"
+                                    id="nama"
+                                    placeholder="example: RudyEvan"
+                                    class="rounded-5xl bg-white/10 border border-white/20 text-black focus:ring-2 focus:ring-[#5FC2F6] transition duration-300 w-full placeholder:text-slate-400"
+                                />
+                                <p
+                                    id="usernameError"
+                                    class="hidden text-red-500 text-sm font-poppins"
+                                ></p>
+                            </div>
+                            <div class="relative space-y-1">
+                                <label
+                                    for="Email"
+                                    class="text-justify font-poppins text-slate-200"
+                                    >Email:
+                                </label>
+                                <input
+                                    type="text"
+                                    id="Email"
+                                    placeholder="example@gmail.com"
+                                    class="rounded-5xl bg-white/10 border border-white/20 text-black focus:ring-2 focus:ring-[#5FC2F6] transition duration-300 w-full placeholder:text-slate-400"
+                                />
+                                <p
+                                    id="emailError"
+                                    class="hidden text-red-500 text-sm font-poppins"
+                                ></p>
+                            </div>
+                            <div class="space-y-1">
+                                <label
+                                    for="Password"
+                                    class="text-justify text-slate-200 font-poppins"
+                                    >Password:
+                                </label>
+                                <div class="relative">
+                                    <input
+                                        type="password"
+                                        placeholder="example: Rudyevan06"
+                                        id="Password"
+                                        class="password-input rounded-5xl bg-white/10 border border-white/20 text-black focus:ring-2 focus:ring-[#5FC2F6] transition duration-300 w-full placeholder:text-slate-400"
+                                    />
+                                    <span
+                                        class="toggle-password absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer"
+                                    >
+                                        👁️
+                                    </span>
+                                </div>
+                                <p
+                                    id="passwordError"
+                                    class="hidden text-red-500 text-sm font-poppins"
+                                ></p>
+                            </div>
+                            <div class="space-y-1">
+                                <label
+                                    for="CPassword"
+                                    class="text-justify text-slate-200 font-poppins"
+                                    >Confirm Password:
+                                </label>
+                                <div class="relative">
+                                    <input
+                                        type="password"
+                                        placeholder="example: Rudyevan06"
+                                        id="CPassword"
+                                        class="password-input rounded-5xl bg-white/10 border border-white/20 text-black focus:ring-2 focus:ring-[#5FC2F6] transition duration-300 w-full placeholder:text-slate-400"
+                                    />
+                                    <span
+                                        class="toggle-password absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer"
+                                    >
+                                        👁️
+                                    </span>
+                                </div>
+                                <p
+                                    id="confirmError"
+                                    class="hidden text-red-500 text-sm font-poppins"
+                                ></p>
+                            </div>
+                            <div class="space-y-1">
+                                <label
+                                    class="flex items-center gap-2 text-slate-200 cursor-pointer text-justify text-slate-200"
+                                >
+                                    <input
+                                        type="checkbox"
+                                        id="agree"
+                                        class="w-5 h-5 accent-[#5FC2F6] rounded transition duration-300 hover:scale-110"
+                                    /><span
+                                        class="text-justify font-poppins text-slate-200"
+                                    >
+                                        I agree with
+                                        <a
+                                            href="#"
+                                            class="showpage font-semibold text-[#5FC2F6] hover:text-purple-300 transition duration-300 hover:underline transition underline active:bg-slate-900 font-poppins"
+                                            title="privacypolicy"
+                                            >privacy policy</a
+                                        ></span
+                                    >
+                                </label>
+                                <p
+                                    id="agreeError"
+                                    class="hidden text-red-500 text-sm font-poppins"
+                                ></p>
+                            </div>
+                            <button
+                                type="submit"
+                                class="w-full py-3 mt-4 bg-[#5FC2F6] text-white text-lg font-bold rounded-xl shadow-lg transition duration-300 hover:bg-blue-500 hover:shadow-xl active:scale-95 focus:ring-2 focus:ring-[#5FC2F6] focus:outline-none font-inter cursor-pointer"
+                            >
+                                Register
+                            </button>
+
+                            <p
+                                class="text-center text-slate-200 text-sm font-poppins"
+                            >
+                                Already have an account?
+                                <a
+                                    href="#"
+                                    class="showlogin font-semibold text-[#5FC2F6] hover:text-purple-300 transition duration-300 hover:underline transition underline active:bg-slate-900 text-center font-poppins"
+                                    title="Iogin"
+                                    >log in</a
+                                >
+                            </p>
+
+                            <a
+                                href="#"
+                                class="showmenu transition font-semibold text-[#5FC2F6] hover:text-purple-300 transition duration-300 hover:underline active:bg-slate-900 text-center font-poppins"
+                                title="home"
+                                >🏠 Back to home</a
+                            >
+                        </form>
+                    </div>
+                </div>
+                <div
+                    class="relative z-10 flex min-h-screen items-center justify-center hidden"
+                    id="login"
+                >
+                    <div
+                        class="relative w-full max-w-md rounded-2xl bg-white/10 backdrop-blur-lg border border-white/20 p-3"
+                    >
+                        <form class="space-y-3" id="loginForm">
+                            <h2
+                                class="font-inter text-center font-bold text-[#0C4AC2] text-glow text-3xl"
+                            >
+                                Welcome Back
+                            </h2>
+                            <div class="space-y-1">
+                                <label
+                                    for="loginUsername"
+                                    class="text-justify font-poppins text-slate-200"
+                                    >Username:
+                                </label>
+                                <input
+                                    type="text"
+                                    id="loginUsername"
+                                    placeholder="example: RudyEvan"
+                                    class="rounded-5xl bg-white/10 border border-white/20 text-black focus:ring-2 focus:ring-[#5FC2F6] transition duration-300 w-full placeholder:text-slate-400"
+                                />
+                                <p
+                                    id="loginUsernameError"
+                                    class="hidden text-red-500 text-sm font-poppins"
+                                ></p>
+                            </div>
+                            <label
+                                for="loginPassword"
+                                class="text-justify text-slate-200 font-poppins"
+                                >Password:
+                            </label>
+                            <div class="space-y-1">
+                                <div class="relative">
+                                    <input
+                                        type="password"
+                                        placeholder="example: Rudyevan06"
+                                        id="loginPassword"
+                                        class="rounded-5xl bg-white/10 border border-white/20 text-black focus:ring-2 focus:ring-[#5FC2F6] transition duration-300 w-full placeholder:text-slate-400"
+                                    /><span
+                                        class="toggle-password absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer"
+                                    >
+                                        👁️
+                                    </span>
+                                </div>
+                                <p
+                                    id="loginPasswordError"
+                                    class="hidden text-red-500 text-sm font-poppins"
+                                ></p>
+                            </div>
+                            <div class="space-y-1">
+                                <label
+                                    class="flex items-center gap-2 text-slate-200 cursor-pointer text-justify text-slate-200"
+                                >
+                                    <input
+                                        type="checkbox"
+                                        id="remenber"
+                                        class="w-5 h-5 accent-[#5FC2F6] rounded transition duration-300 hover:scale-110"
+                                    /><span
+                                        class="text-justify font-poppins text-slate-200"
+                                    >
+                                        Remember me
+                                    </span>
+                                </label>
+                                <p
+                                    id="remenberError"
+                                    class="hidden text-red-500 text-sm font-poppins"
+                                ></p>
+                                <span
+                                    class="text-justify font-poppins text-slate-200"
+                                >
+                                    Forget your
+                                    <a
+                                        href="#"
+                                        class="showpage font-semibold text-[#5FC2F6] hover:text-purple-300 transition duration-300 hover:underline transition underline active:bg-slate-900 font-poppins"
+                                        title="password"
+                                        >password</a
+                                    ></span
+                                >
+                            </div>
+
+                            <button
+                                type="submit"
+                                class="w-full py-3 mt-4 bg-[#5FC2F6] text-white text-lg font-bold rounded-xl shadow-lg transition duration-300 hover:bg-blue-500 hover:shadow-xl active:scale-95 focus:ring-2 focus:ring-[#5FC2F6] focus:outline-none font-inter cursor-pointer"
+                            >
+                                Log in
+                            </button>
+
+                            <p
+                                class="text-center text-slate-200 text-sm font-poppins"
+                            >
+                                Don't have an account?
+                                <a
+                                    href="#"
+                                    class="showregister font-semibold text-[#5FC2F6] hover:text-purple-300 transition duration-300 hover:underline transition underline active:bg-slate-900 text-center font-poppins"
+                                    title="Register"
+                                    >Register</a
+                                >
+                            </p>
+                            <a
+                                href="#"
+                                class="showmenu font-semibold text-[#5FC2F6] hover:text-purple-300 transition duration-300 hover:underline transition active:bg-slate-900 text-center font-poppins"
+                                title="home"
+                                >🏠 Back to home</a
+                            >
+                        </form>
+                    </div>
+                </div>
+
+                <div
+                    class="relative z-10 flex min-h-screen items-center justify-center hidden"
+                    id="kritik"
+                >
+                    <div
+                        class="relative w-full max-w-md rounded-2xl bg-white/10 backdrop-blur-lg border border-white/20 p-3 space-y-5"
+                    >
+                        <h2
+                            class="font-inter text-center font-bold text-[#0C4AC2] text-glow text-3xl"
+                        >
+                            Kritik & Saran
+                        </h2>
+                        <p
+                            class="text-xs text-[#5FC2F6] font-poppins text-justify pl-2 pt-2 pb-0"
+                        >
+                            Maaf jika lembar ini masih kosong,namanya aja masih
+                            belajar koding<br />
+
+                            <b>Jika punya kritik, saran, atau menemukan bug? </b
+                            ><br />
+                            Masukan Anda sangat berarti untuk membantu saya
+                            mengembangkan dan menyempurnakan proyek saya
+                            kedepannya.<br />
+                            <b>Hubungi saya melalui Instagram:</b><br />
+                        </p>
+                        <div class="flex items-center gap-0 p-2">
+                            <img
+                                src="./assets/Ikon.png"
+                                alt="Logo"
+                                class="w-7 h-7 object-contain items-center"
+                            />
+                            <p
+                                class="text-[#5FC2F6] font-bold font-poppins text-justify"
+                            >
+                                Instagram:
+                                <a
+                                    href="https://www.instagram.com/rudy.vandes?igsh=MXM3d29hNDh0YmRscA=="
+                                    class="font-semibold text-[#5FC2F6] hover:texs-purple-300 transition duration-300 hover:underline transition underline active:bg-slate-900 text-center font-poppins"
+                                    title="Instagram saya"
+                                    >@rudy.vandes</a
+                                >
+                            </p>
+                        </div>
+                        <div class="flex flex-col gap-3 mt-6">
+                            <a
+                                href="#"
+                                class="showlogin font-semibold text-[#5FC2F6] hover:text-purple-300 transition duration-300 hover:underline transition active:bg-slate-900 text-center font-poppins"
+                                title="Iogin"
+                                >🔐Back to Log in</a
+                            >
+                            <a
+                                href="#"
+                                class="showregister font-semibold text-[#5FC2F6] hover:text-purple-300 transition duration-300 hover:underline transition active:bg-slate-900 text-center font-poppins"
+                                title="Iogin"
+                                >📝Back to Register</a
+                            >
+                            <a
+                                href="#"
+                                class="showmenu font-semibold text-[#5FC2F6] hover:text-purple-300 transition duration-300 hover:underline transition active:bg-slate-900 text-center font-poppins"
+                                title="Iogin"
+                                >🏠 Back to home</a
+                            >
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="top-0 item-center-ce bg-[#1E3A8A] pb-2 mt-0">
+                <div class="text-center">
+                    <p class="text-xs font-bold text-[#5FC2F6] font-inter p-2">
+                        Terima kasih telah mengunjungi website saya,dan tunggu
+                        projek saya berikutnya
+                    </p>
+                </div>
+            </div>
+        </header>
+        <div class="fixed">
+            <audio id="bgMusic" loop>
+                <source src="./assets/winter.mp3" type="audio/mpeg" />
+            </audio>
+            <button
+                id="musicBtn"
+                class="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-white/10 backdrop-blur-lg border border-white/20 text-2xl flex items-center justify-center shadow-lg cursor-pointer"
+            >
+                🎵
+            </button>
+        </div>
+        <script src="Login.js"></script>
+    </body>
+</html>
